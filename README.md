@@ -32,3 +32,5 @@ Quais problemas foram detectados e como resolveu cada um deles, que transformaç
 Análise feita e respondendo as perguntas elaboradas na etapa 4.1.
 ## 7. Autoavaliação: 
 Ao finalizar o trabalho, é esperado que o aluno faça uma autoavaliação contendo uma discussão sobre se conseguiu atingir os objetivos delineados antes do início das outras etapas, suas dificuldades encontradas na execução do trabalho, bem como trabalhos futuros para enriquecer o problema e sua solução em seu portfólio.
+
+<img width="805" height="661" alt="Captura de Tela 2026-09-24 às 22 19 19" src="https://github.com/user-attachments/assets/f30b9fb3-218e-47f8-8e8c-47ec9cc4229c" />
