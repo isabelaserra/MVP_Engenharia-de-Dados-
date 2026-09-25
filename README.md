@@ -2,7 +2,7 @@
 MVP_Engenharia de Dados 
 
 
-Independente do modelo, você deve criar um #Catálogo de Dados: um documento/sistema que descreve cada tabela e cada coluna do seu modelo. Isso existe porque, na prática, dados sem documentação viram "caixa preta", ninguém sabe o que significa cada campo, quais valores são válidos, de onde vieram. No Databricks já existe esse catálogo disponível para ser utilizado que é o Unity Catalog. 
+Independente do modelo, você deve criar um # Catálogo de Dados: um documento/sistema que descreve cada tabela e cada coluna do seu modelo. Isso existe porque, na prática, dados sem documentação viram "caixa preta", ninguém sabe o que significa cada campo, quais valores são válidos, de onde vieram. No Databricks já existe esse catálogo disponível para ser utilizado que é o Unity Catalog. 
 
 O catálogo deve conter, para cada tabela existente e seus campos (colunas da tabela):
 
@@ -16,3 +16,12 @@ O catálogo deve conter, para cada tabela existente e seus campos (colunas da ta
 
 - Linhagem dos dados: de qual fonte o dado veio e se houve alguma transformação ou junção para compô-lo. Essa informação pode vim na descrição do campo ou exibido de forma diagramável (Databricks auxilia nesse aspecto).
 
+## tópicos
+
+Contexto de Negócios e Perguntas (Etapa 2. e 4.1): perguntas de negócio que foram formuladas, explicação do contexto dos dados brutos e resumo da estrutura desses dados brutos (colunas e tabelas). Explique sobre a licença dos dados.
+Carga dos Dados (Etapa 4.2): Explicação da carga de dados, como foi feita e referência ao script no GitHub (se aplicável).
+Modelagem e Catálogo de Dados (Etapa 4.3): Explicação da modelagem com a estrutura das tabelas (catálogo de dados transcrito e screenshots do sistema de catálogo). 
+Pipeline de Dados (Etapa 4.4): Explique como organizou o processo de pipeline ETL, se tudo foi feito em um único notebook ou se ramificou e como ramificou. Adicione referência aos scripts disponibilizados no Github e screenshots que evidencie que essas tabelas foram salvas (persistidas) na plataforma de nuvem utilizada.
+Qualidade de Dados (Etapa 4.5): Quais problemas foram detectados e como resolveu cada um deles, que transformações foram feitas.
+Análise de Dados (Etapa 4.5): Análise feita e respondendo as perguntas elaboradas na etapa 4.1.
+Autoavaliação: Ao finalizar o trabalho, é esperado que o aluno faça uma autoavaliação contendo uma discussão sobre se conseguiu atingir os objetivos delineados antes do início das outras etapas, suas dificuldades encontradas na execução do trabalho, bem como trabalhos futuros para enriquecer o problema e sua solução em seu portfólio.
