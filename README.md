@@ -2,7 +2,7 @@
 MVP_Engenharia de Dados 
 
 
-Independente do modelo, você deve criar um #Catálogo de Dados#: um documento/sistema que descreve cada tabela e cada coluna do seu modelo. Isso existe porque, na prática, dados sem documentação viram "caixa preta", ninguém sabe o que significa cada campo, quais valores são válidos, de onde vieram. No Databricks já existe esse catálogo disponível para ser utilizado que é o Unity Catalog. 
+Independente do modelo, você deve criar um #Catálogo de Dados: um documento/sistema que descreve cada tabela e cada coluna do seu modelo. Isso existe porque, na prática, dados sem documentação viram "caixa preta", ninguém sabe o que significa cada campo, quais valores são válidos, de onde vieram. No Databricks já existe esse catálogo disponível para ser utilizado que é o Unity Catalog. 
 
 O catálogo deve conter, para cada tabela existente e seus campos (colunas da tabela):
 
