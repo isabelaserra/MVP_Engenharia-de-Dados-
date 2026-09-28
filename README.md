@@ -66,20 +66,44 @@ Para conferir se nada tinha se perdido, comparei a quantidade de linhas: a fato 
 
 Também defini as chaves primárias das dimensões e as chaves estrangeiras da fato, o que permitiu visualizar o relacionamento entre as tabelas no Catalog do Databricks.
 
+
 <img width="805" height="661" alt="Captura de Tela 2026-09-24 às 22 19 19" src="https://github.com/user-attachments/assets/f30b9fb3-218e-47f8-8e8c-47ec9cc4229c" />
 
 Registrei a descrição de cada tabela e coluna no próprio Unity Catalog do Databricks. Usei o recurso de sugestão automática de descrições da ferramenta e revisei cada uma, ajustando as que não refletiam o significado real dos dados, como o caso do tempo de resposta, que fica vazio quando a empresa não respondeu.
 
-
+<img width="1341" height="972" alt="image" src="https://github.com/user-attachments/assets/d325d74d-2705-4eee-8c39-884c278366d3" />
 
 ## 4. Pipeline de Dados (Etapa 4.4):
+Dividi o pipeline em notebooks separados, um para cada etapa, seguindo a arquitetura em camadas (bronze, silver e gold). Fiz assim porque um único notebook ficaria muito grande e difícil de corrigir. Cada notebook lê a tabela salva pelo anterior.
 
-Explique como organizou o processo de pipeline ETL, se tudo foi feito em um único notebook ou se ramificou e como ramificou. Adicione referência aos scripts disponibilizados no Github e screenshots que evidencie que essas tabelas foram salvas (persistidas) na plataforma de nuvem utilizada.
+Notebook	O que faz	Tabela gerada
+[importação]	Lê os arquivos CSV e salva os dados brutos	bronze_reclamacoes
+[silver]	Limpa e padroniza os dados	silver_reclamacoes
+[gold]	Monta o modelo estrela	fato_reclamacao e 4 dimensões
+[análise]	Responde às perguntas de negócio	—
+
+Rodei os notebooks manualmente, nessa ordem, e conferi a quantidade de linhas em cada etapa. Todas as tabelas foram salvas em formato Delta no Databricks, no schema consumidor, como mostra o print abaixo.
+
 ## 5.Qualidade de Dados (Etapa 4.5): 
-Quais problemas foram detectados e como resolveu cada um deles, que transformações foram feitas.
+O primeiro problema que encontrei foi com o arquivo de junho. Ele veio compactado em .zip e, sem perceber, fiz a carga dele junto com os outros. Quando olhei os dados, apareceram linhas com caracteres ilegíveis. Contando as linhas pela coluna arquivo_origem, descobri que 74.594 delas vinham do .zip. Para resolver, descompactei o arquivo com o WinZip, enviei o CSV para o volume e refiz a carga.
+
+Depois, padronizei os nomes das colunas, que vinham com acentos e espaços, como "Faixa Etária". Renomeei todas para letras minúsculas, sem acento e com "_" no lugar dos espaços, por exemplo faixa_etaria. Isso facilitou bastante na hora de escrever os códigos.
+
+Também conferi os tipos de dados com o printSchema. Depois da correção do .zip, o Spark identificou corretamente a data de finalização como data e o tempo de resposta e a nota como números.
+
+Ao olhar as primeiras linhas, percebi que algumas colunas de texto tinham espaços sobrando, como na região, que aparecia como "S " e "N ". Usei a função trim em todas as colunas de texto para remover esses espaços.
+
+Em seguida, contei os valores vazios de cada coluna. Na coluna sexo, preenchi os vazios com "Não informado". Já no tempo de resposta e na nota do consumidor, mantive os vazios, porque eles têm um significado: a empresa não respondeu ou o consumidor não avaliou a reclamação.
+
+Por último, verifiquei as linhas duplicadas e removi 1.044 delas, o que representa cerca de 0,2% da base.
+
+Além desses tratamentos, filtrei apenas o segmento "Bancos, Financeiras e Administradoras de Cartão", que é o foco do trabalho. No final, a tabela silver_reclamacoes ficou com 514.326 reclamações.
+
 ## 6. Análise de Dados (Etapa 4.5):
 Análise feita e respondendo as perguntas elaboradas na etapa 4.1.
+
 ## 7. Autoavaliação: 
+
 Ao finalizar o trabalho, é esperado que o aluno faça uma autoavaliação contendo uma discussão sobre se conseguiu atingir os objetivos delineados antes do início das outras etapas, suas dificuldades encontradas na execução do trabalho, bem como trabalhos futuros para enriquecer o problema e sua solução em seu portfólio.
 
 
